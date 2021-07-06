@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="vehicle_action" model="ir.actions.act_window">
+        <field name="name">Vehicles</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">vehicle.vehicle</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_root"
+        name="Vehicles"
+        web_icon="vehicle,static/description/icon.png"/>
+
+    <menuitem
+        id="menu_tree"
+        parent="menu_root"
+        name="Vehicles"
+        action="vehicle_action"
+        sequence="1"/>
+
+</odoo>
