@@ -18,7 +18,9 @@
                 eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
             />
         </record>
+    </data>
 
+    <data noupdate="1">
         <record id="vehicle_edit_form_user_rule" model="ir.rule">
             <field name="name">Vehicles User Rule</field>
             <field name="model_id" ref="model_vehicle_vehicle" />
