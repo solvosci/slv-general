@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_partner_waste_search" model="ir.ui.view">
+        <field name="name">res.partner.search(waste)</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='user_id']" position="after">
+                <field name="nima_code" />
+                <field name="auth_number" />
+            </xpath>
+            <xpath expr="//search/filter[@name='inactive']" position="before">
+                <filter name="with_nima_code" string="With NIMA Code" domain="[('nima_code', '!=', False)]"/>
+                <filter name="without_nima_code" string="Without NIMA Code" domain="[('nima_code', '=', False)]"/>
+                <separator/>
+                <filter name="with_auth_number" string="With Authorization Number" domain="[('auth_number', '!=', False)]"/>
+                <filter name="without_auth_number" string="Without Authorization Number" domain="[('auth_number', '=', False)]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_res_partner_waste_tree" model="ir.ui.view">
+        <field name="name">res.partner.tree(waste)</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='vat']" position="after">
+                <field name="nima_code" optional="hide"/>
+                <field name="auth_number" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_res_partner_waste_form" model="ir.ui.view">
+        <field name="name">res.partner.form(waste)</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='internal_notes']" position="after">
+                <page name="waste" string="Waste Data">
+                    <group name="waste">
+                        <group string="Waste">
+                            <field name="nima_code" />
+                            <field name="auth_number" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
