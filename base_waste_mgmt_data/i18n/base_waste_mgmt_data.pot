@@ -1,0 +1,86 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_waste_mgmt_data
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-16 12:19+0000\n"
+"PO-Revision-Date: 2021-07-16 12:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_waste_mgmt_data
+#: model:ir.model.fields,field_description:base_waste_mgmt_data.field_res_partner__auth_number
+#: model:ir.model.fields,field_description:base_waste_mgmt_data.field_res_users__auth_number
+msgid "Authorization Number"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model:ir.model,name:base_waste_mgmt_data.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model:ir.model.fields,field_description:base_waste_mgmt_data.field_product_product__low_code
+#: model:ir.model.fields,field_description:base_waste_mgmt_data.field_product_template__low_code
+msgid "LoW Code"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model:ir.model.fields,field_description:base_waste_mgmt_data.field_res_partner__nima_code
+#: model:ir.model.fields,field_description:base_waste_mgmt_data.field_res_users__nima_code
+msgid "NIMA Code"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model:ir.model,name:base_waste_mgmt_data.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model_terms:ir.ui.view,arch_db:base_waste_mgmt_data.view_product_template_waste_form
+#: model_terms:ir.ui.view,arch_db:base_waste_mgmt_data.view_res_partner_waste_form
+msgid "Waste"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model_terms:ir.ui.view,arch_db:base_waste_mgmt_data.view_product_template_waste_form
+#: model_terms:ir.ui.view,arch_db:base_waste_mgmt_data.view_res_partner_waste_form
+msgid "Waste Data"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model_terms:ir.ui.view,arch_db:base_waste_mgmt_data.view_res_partner_waste_search
+msgid "With Authorization Number"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model_terms:ir.ui.view,arch_db:base_waste_mgmt_data.view_product_template_waste_search
+msgid "With LoW Code"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model_terms:ir.ui.view,arch_db:base_waste_mgmt_data.view_res_partner_waste_search
+msgid "With NIMA Code"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model_terms:ir.ui.view,arch_db:base_waste_mgmt_data.view_res_partner_waste_search
+msgid "Without Authorization Number"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model_terms:ir.ui.view,arch_db:base_waste_mgmt_data.view_product_template_waste_search
+msgid "Without LoW Code"
+msgstr ""
+
+#. module: base_waste_mgmt_data
+#: model_terms:ir.ui.view,arch_db:base_waste_mgmt_data.view_res_partner_waste_search
+msgid "Without NIMA Code"
+msgstr ""
