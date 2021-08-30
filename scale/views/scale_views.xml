@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_scale_scale_search" model="ir.ui.view">
+        <field name="name">scale.scale.search</field>
+        <field name="model">scale.scale</field>
+        <field name="arch" type="xml">
+            <search string="Scale Search">
+                <separator />
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('active','=',True)]"
+                />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active','=',False)]"
+                />
+                <separator />
+                <field name="name" filter_domain="[('name', 'ilike', self)]" />
+            </search>
+        </field>
+    </record>
+    <record id="view_scale_scale_form" model="ir.ui.view">
+        <field name="name">scale.scale.form</field>
+        <field name="model">scale.scale</field>
+        <field name="arch" type="xml">
+            <form string="Scale">
+                <header>
+                    <button name="test_get_weight" 
+                            id="test_get_weight" 
+                            string="Scale Test" 
+                            type="object"
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <div class="oe_title">
+                        <h1 class="oe_title">
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="main">
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />                        
+                            <field name="ip"/>
+                            <field name="port"/>
+                            <field name="command_ask"/>
+                            <field name="answer_prefix"/>
+                        </group>
+                        <group>
+                            <field name="answer_time"/>
+                            <field name="attempt_number"/>
+                            <field name="time_between_attempt"/>
+                            <field name="uom_id"/>
+                            <field name="last_weight"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+    <record id="view_scale_scale_tree" model="ir.ui.view">
+        <field name="name">scale.scale.tree</field>
+        <field name="model">scale.scale</field>
+        <field name="arch" type="xml">
+            <tree string="Scales" decoration-muted="not active">
+                <field name="name"/>
+                <field name="ip"/>
+                <field name="port"/>
+                <field name="command_ask" optional="hide"/>
+                <field name="answer_prefix" optional="hide"/>
+                <field name="answer_time" optional="hide"/>
+                <field name="attempt_number" optional="hide"/>
+                <field name="time_between_attempt" optional="hide"/>
+                <field name="uom_id"/>
+                <field name="last_weight"/>
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                />                        
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
