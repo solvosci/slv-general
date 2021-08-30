@@ -1,0 +1,184 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* scale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-30 15:41+0000\n"
+"PO-Revision-Date: 2021-08-30 15:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__active
+#: model_terms:ir.ui.view,arch_db:scale.view_scale_scale_search
+msgid "Active"
+msgstr "Activo"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__answer_prefix
+msgid "Answer Prefix"
+msgstr "Prefijo de la respuesta"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__answer_time
+msgid "Answer Time"
+msgstr "Tiempo de respuesta"
+
+#. module: scale
+#: model_terms:ir.ui.view,arch_db:scale.view_scale_scale_search
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__attempt_number
+msgid "Attempt Number"
+msgstr "Número de intentos"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__command_ask
+msgid "Command Ask"
+msgstr "Comando de petición"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__company_id
+msgid "Company"
+msgstr "Empresa"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__id
+msgid "ID"
+msgstr "Id."
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__ip
+msgid "Ip"
+msgstr "IP"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale____last_update
+msgid "Last Modified on"
+msgstr "Últ. modificación en"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__write_uid
+msgid "Last Updated by"
+msgstr "Últ. Modificación por"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__write_date
+msgid "Last Updated on"
+msgstr "Últ. actualización en"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__last_weight
+msgid "Last Weight"
+msgstr "Últ. peso"
+
+#. module: scale
+#: model:res.groups,name:scale.group_scale_manager
+msgid "Manager"
+msgstr "Administrador"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__port
+msgid "Port"
+msgstr "Puerto"
+
+#. module: scale
+#: model:ir.module.category,name:scale.module_scale_category
+#: model_terms:ir.ui.view,arch_db:scale.view_scale_scale_form
+msgid "Scale"
+msgstr "Báscula"
+
+#. module: scale
+#: model_terms:ir.ui.view,arch_db:scale.view_scale_scale_search
+msgid "Scale Search"
+msgstr "Búsqueda de báscula"
+
+#. module: scale
+#: model_terms:ir.ui.view,arch_db:scale.view_scale_scale_form
+msgid "Scale Test"
+msgstr "Probar"
+
+#. module: scale
+#: model:ir.actions.act_window,name:scale.scale_action
+#: model_terms:ir.ui.view,arch_db:scale.view_scale_scale_tree
+msgid "Scales"
+msgstr "Básculas"
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid "Success!! Weight read: %d"
+msgstr "¡¡Éxito!! Peso leído: %d"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__time_between_attempt
+msgid "Time Between Attempt"
+msgstr "Tiempo entre intentos"
+
+#. module: scale
+#: model:ir.model.fields,help:scale.field_scale_scale__answer_time
+#: model:ir.model.fields,help:scale.field_scale_scale__time_between_attempt
+msgid "Time in ms"
+msgstr "Tiempo en ms"
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid "Timed out on weighing scale"
+msgstr "Tiempo agotado esperando por la báscula"
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid "Unexpected frame format received (%s). Expected: '%s12345'"
+msgstr "Formato de trama recibido no reconido (%s). Esperado: '%s12345'"
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid "Unexpected received number format (%s)"
+msgstr "Formato de número recibido no reconocido (%s)"
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__uom_id
+msgid "Uom"
+msgstr "UdM"
+
+#. module: scale
+#: model:res.groups,name:scale.group_scale_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: scale
+#: model:ir.model,name:scale.model_scale_scale
+msgid "scale.scale"
+msgstr ""
