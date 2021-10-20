@@ -7,7 +7,7 @@
     'summary': 'Vehicle',
     'website': 'https://github.com/solvosci/slv-general',
     'license': 'LGPL-3',
-    'version': '13.0.1.0.1',
+    'version': '13.0.1.0.2',
     'depends': [
         'mail',
         'portal',
