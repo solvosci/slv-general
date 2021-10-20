@@ -8,7 +8,10 @@ class Vehicle(models.Model):
     _description = "Vehicle"
     _inherit = ["mail.thread.cc", "mail.activity.mixin"]
 
-    name = fields.Char(default=_("New car"), readonly=True)
+    name = fields.Char(
+        compute="_compute_name",
+        store=True
+    )
     license_plate = fields.Char(
         index=True,
         required=True,
@@ -29,6 +32,11 @@ class Vehicle(models.Model):
         "unique(license_plate)",
         "The license plate must be unique!"
     )]
+
+    @api.depends('license_plate')
+    def _compute_name(self):
+        for record in self:
+            record.name = record.license_plate
 
     # TODO Improve vehicle name detection
     @api.constrains('license_plate')
