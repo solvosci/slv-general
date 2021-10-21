@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_camera_camera_search" model="ir.ui.view">
+        <field name="name">camera.camera.search</field>
+        <field name="model">camera.camera</field>
+        <field name="arch" type="xml">
+            <search string="Camera Search">
+                <separator />
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('active','=',True)]"
+                />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active','=',False)]"
+                />
+                <separator />
+                <field name="name" filter_domain="[('name', 'ilike', self)]" />
+            </search>
+        </field>
+    </record>
+    <record id="view_camera_camera_form" model="ir.ui.view">
+        <field name="name">camera.camera.form</field>
+        <field name="model">camera.camera</field>
+        <field name="arch" type="xml">
+            <form string="camera">
+                <header>
+                    <button name="get_image" 
+                            id="get_image" 
+                            string="Camera Test" 
+                            type="object"
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <div class="oe_title">
+                        <h1 class="oe_title">
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="main">
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />                        
+                            <field name="url"/>
+                            <field name="refresh_time" />
+                        </group>
+                        <group>
+                            <field name="last_image" widget="image" nolabel="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+    <record id="view_camera_camera_tree" model="ir.ui.view">
+        <field name="name">camera.camera.tree</field>
+        <field name="model">camera.camera</field>
+        <field name="arch" type="xml">
+            <tree string="cameras" decoration-muted="not active">
+                <field name="name"/>
+                <field name="url" optional="hide"/>
+                <field
+                    name="last_image_mini"
+                    widget="image"
+                    string="Last image"
+                />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                />                        
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
