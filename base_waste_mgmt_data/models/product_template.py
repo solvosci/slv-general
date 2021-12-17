@@ -7,3 +7,4 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     low_code = fields.Char(string="LoW Code")
+    basel_code = fields.Char(default="B1010")

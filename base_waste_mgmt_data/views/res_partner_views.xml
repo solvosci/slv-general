@@ -41,6 +41,7 @@
                         <group string="Waste">
                             <field name="nima_code" />
                             <field name="auth_number" />
+                            <field name="valuation_operation" />
                         </group>
                     </group>
                 </page>
