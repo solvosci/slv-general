@@ -7,7 +7,7 @@
     'summary': 'Adds some necessary fields for waste management.',
     'website': 'https://github.com/solvosci/slv-general',
     'license': 'LGPL-3',
-    'version': '13.0.1.0.0',
+    'version': '13.0.1.1.0',
     'depends': ['product'],
     'data': [
         'views/product_template_views.xml',

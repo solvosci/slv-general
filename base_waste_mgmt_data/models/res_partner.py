@@ -8,3 +8,4 @@ class ResPartner(models.Model):
 
     nima_code = fields.Char(string="NIMA Code")
     auth_number = fields.Char(string="Authorization Number")
+    valuation_operation = fields.Char(default="R4")

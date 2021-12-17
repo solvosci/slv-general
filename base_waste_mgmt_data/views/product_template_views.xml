@@ -36,6 +36,7 @@
                     <group name="waste">
                         <group string="Waste">
                             <field name="low_code" />
+                            <field name="basel_code" />
                         </group>
                     </group>
                 </page>
