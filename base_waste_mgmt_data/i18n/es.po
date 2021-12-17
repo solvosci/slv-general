@@ -6,22 +6,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 12:19+0000\n"
-"PO-Revision-Date: 2021-07-16 14:25+0200\n"
+"POT-Creation-Date: 2021-12-17 16:26+0000\n"
+"PO-Revision-Date: 2021-12-17 16:26+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
-"Last-Translator: \n"
-"Language: es_ES\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: base_waste_mgmt_data
 #: model:ir.model.fields,field_description:base_waste_mgmt_data.field_res_partner__auth_number
 #: model:ir.model.fields,field_description:base_waste_mgmt_data.field_res_users__auth_number
 msgid "Authorization Number"
 msgstr "Número de Autorización"
+
+#. module: base_waste_mgmt_data
+#: model:ir.model.fields,field_description:base_waste_mgmt_data.field_product_product__basel_code
+#: model:ir.model.fields,field_description:base_waste_mgmt_data.field_product_template__basel_code
+msgid "Basel Code"
+msgstr "Código de Basilea"
 
 #. module: base_waste_mgmt_data
 #: model:ir.model,name:base_waste_mgmt_data.model_res_partner
@@ -44,6 +48,12 @@ msgstr "Código NIMA"
 #: model:ir.model,name:base_waste_mgmt_data.model_product_template
 msgid "Product Template"
 msgstr "Plantilla de producto"
+
+#. module: base_waste_mgmt_data
+#: model:ir.model.fields,field_description:base_waste_mgmt_data.field_res_partner__valuation_operation
+#: model:ir.model.fields,field_description:base_waste_mgmt_data.field_res_users__valuation_operation
+msgid "Valuation Operation"
+msgstr "Cód. operación de valorización"
 
 #. module: base_waste_mgmt_data
 #: model_terms:ir.ui.view,arch_db:base_waste_mgmt_data.view_product_template_waste_form
