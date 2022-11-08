@@ -53,6 +53,7 @@
                             <field name="port"/>
                             <field name="command_ask"/>
                             <field name="answer_prefix"/>
+                            <field name="answer_suffix"/>
                         </group>
                         <group>
                             <field name="answer_time"/>
@@ -60,6 +61,9 @@
                             <field name="time_between_attempt"/>
                             <field name="uom_id"/>
                             <field name="last_weight"/>
+                            <field name="last_weight_dt"/>
+                            <field name="last_weight_ok"/>
+                            <field name="last_weight_error"/>
                         </group>
                     </group>
                 </sheet>
@@ -77,6 +81,7 @@
                 <field name="port"/>
                 <field name="command_ask" optional="hide"/>
                 <field name="answer_prefix" optional="hide"/>
+                <field name="answer_suffix" optional="hide"/>
                 <field name="answer_time" optional="hide"/>
                 <field name="attempt_number" optional="hide"/>
                 <field name="time_between_attempt" optional="hide"/>
