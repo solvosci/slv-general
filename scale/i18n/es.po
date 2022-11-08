@@ -6,14 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-30 15:41+0000\n"
-"PO-Revision-Date: 2021-08-30 15:41+0000\n"
+"POT-Creation-Date: 2022-11-08 09:57+0000\n"
+"PO-Revision-Date: 2022-11-08 09:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid "%s after %d attempt(s)"
+msgstr "%s tras %d intentos(s)"
 
 #. module: scale
 #: model:ir.model.fields,field_description:scale.field_scale_scale__active
@@ -27,6 +33,11 @@ msgid "Answer Prefix"
 msgstr "Prefijo de la respuesta"
 
 #. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__answer_suffix
+msgid "Answer Suffix"
+msgstr "Sufijo de la respuesta"
+
+#. module: scale
 #: model:ir.model.fields,field_description:scale.field_scale_scale__answer_time
 msgid "Answer Time"
 msgstr "Tiempo de respuesta"
@@ -35,6 +46,12 @@ msgstr "Tiempo de respuesta"
 #: model_terms:ir.ui.view,arch_db:scale.view_scale_scale_search
 msgid "Archived"
 msgstr "Archivado"
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid "Attempt #%d completed in %d ms"
+msgstr "Intento nº %s completado en %d ms"
 
 #. module: scale
 #: model:ir.model.fields,field_description:scale.field_scale_scale__attempt_number
@@ -112,6 +129,7 @@ msgid "Port"
 msgstr "Puerto"
 
 #. module: scale
+#: model:ir.model,name:scale.model_scale_scale
 #: model:ir.module.category,name:scale.module_scale_category
 #: model_terms:ir.ui.view,arch_db:scale.view_scale_scale_form
 msgid "Scale"
@@ -136,8 +154,14 @@ msgstr "Básculas"
 #. module: scale
 #: code:addons/scale/models/scale_scale.py:0
 #, python-format
-msgid "Success!! Weight read: %d"
-msgstr "¡¡Éxito!! Peso leído: %d"
+msgid ""
+"Success!! %s\n"
+"\n"
+"Weight read: %d"
+msgstr ""
+"¡¡Éxito!! %s\n"
+"\n"
+"Peso leído: %d"
 
 #. module: scale
 #: model:ir.model.fields,field_description:scale.field_scale_scale__time_between_attempt
@@ -153,20 +177,12 @@ msgstr "Tiempo en ms"
 #. module: scale
 #: code:addons/scale/models/scale_scale.py:0
 #, python-format
-msgid "Timed out on weighing scale"
-msgstr "Tiempo agotado esperando por la báscula"
-
-#. module: scale
-#: code:addons/scale/models/scale_scale.py:0
-#, python-format
-msgid "Unexpected frame format received (%s). Expected: '%s12345'"
-msgstr "Formato de trama recibido no reconido (%s). Esperado: '%s12345'"
-
-#. module: scale
-#: code:addons/scale/models/scale_scale.py:0
-#, python-format
-msgid "Unexpected received number format (%s)"
-msgstr "Formato de número recibido no reconocido (%s)"
+msgid ""
+"Unexpected frame format received (%s): %s. Expected: '%s+ 12345\r"
+"%s'"
+msgstr ""
+"Formato de trama recibido no esperado (%s): %s. Esperado: '%s+ 12345\r"
+"%s'"
 
 #. module: scale
 #: model:ir.model.fields,field_description:scale.field_scale_scale__uom_id
@@ -179,6 +195,31 @@ msgid "User"
 msgstr "Usuario"
 
 #. module: scale
-#: model:ir.model,name:scale.model_scale_scale
-msgid "scale.scale"
-msgstr ""
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid "bad number format"
+msgstr "formato numérico incorrecto"
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid "missing end of frame \r"
+msgstr "falta el final de trama \r"
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid "missing prefix"
+msgstr "falta el prefijo"
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid "missing sign (+/-)"
+msgstr "falta el signo (+/-)"
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid "missing suffix"
+msgstr "falta el sufijo"
