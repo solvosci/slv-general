@@ -1,0 +1,25 @@
+<odoo>
+    <record id="res_partner_view_buttons" model="ir.ui.view">
+        <field name="name">res.partner.view.buttons (in sale_purchase_order_line)</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale.res_partner_view_buttons"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_sale_order']" position="before">
+                <field 
+                    name="sale_purchase_count" 
+                    groups="sale_purchase_order_line_report.group_sale_purchase_order_line_report"
+                    invisible="1"
+                />
+                <button 
+                    string="Sale/Purchase History"
+                    name="action_sale_purchase_order_line" 
+                    type="object" 
+                    class="oe_stat_button" 
+                    icon="fa-list"
+                    groups="sale_purchase_order_line_report.group_sale_purchase_order_line_report"
+                    invisible="sale_purchase_count == 0"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
