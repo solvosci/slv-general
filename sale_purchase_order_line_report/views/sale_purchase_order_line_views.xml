@@ -1,0 +1,96 @@
+<odoo>
+    <record id="sale_purchase_order_line_view_tree" model="ir.ui.view">
+        <field name="name">sale.purchase.order.line.tree</field>
+        <field name="model">sale.purchase.order.line</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="type == 'purchase'" decoration-success="type == 'sale'" default_order="date_order desc">
+                <field name="date_order"/>
+                <button name="action_sale_purchase_view" type="object" icon="fa-external-link"/>
+                <field name="order_name"/>
+                <field name="sale_order_id" groups="base.group_no_one"/>
+                <field name="purchase_order_id" groups="base.group_no_one"/>
+                <field name="partner_id" optional="show" widget="many2onebutton" column_invisible="context.get('hide_sale_purchase_partner',False)"/>
+                <field name="product_id" optional="show" widget="many2onebutton" column_invisible="context.get('hide_sale_purchase_product',False)"/>
+                <field name="product_uom_qty"/>
+                <field name="price_unit"/>
+                <field name="discount"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="price_subtotal" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="type" optional="hide"/>
+                <field name="company_id" groups="!base.group_multi_company" column_invisible="True"/>
+                <field name="company_id" groups="base.group_multi_company" optional="show" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_purchase_order_line_view_search" model="ir.ui.view">
+        <field name="name">sale.purchase.order.line.view.search</field>
+        <field name="model">sale.purchase.order.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Sale and Purchase Order Lines">
+                <field name="product_id"/>
+                <field name="partner_id"/>
+                <field name="order_name"/>
+                <field name="sale_order_id"/>
+                <field name="purchase_order_id"/>
+                <field name="company_id" groups="!base.group_multi_company" invisible="True"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <filter 
+                    name="sales" 
+                    string="Sales" 
+                    domain="[('type', '=', 'sale')]"/>
+                <filter 
+                    name="purchases" 
+                    string="Purchases" 
+                    domain="[('type', '=', 'purchase')]"/>
+                <group string="Group By" name="groupby">
+                    <filter
+                        name="type_groupby"
+                        string="Type"
+                        context="{'group_by': 'type'}"
+                    />
+                    <filter
+                        name="date_groupby"
+                        string="Order Date"
+                        context="{'group_by': 'date_order'}"
+                    />
+                    <filter
+                        name="product_groupby"
+                        string="Product"
+                        context="{'group_by': 'product_id'}"
+                        invisible="context.get('hide_sale_purchase_product',False)"
+                    />
+                    <filter
+                        name="partner_groupby"
+                        string="Partner"
+                        context="{'group_by': 'partner_id'}"
+                        invisible="context.get('hide_sale_purchase_partner',False)"
+                    />
+                    <filter
+                        name="company_groupby"
+                        string="Company"
+                        context="{'group_by': 'company_id'}"
+                        groups="!base.group_multi_company" invisible="True"
+                    />
+                    <filter
+                        name="company_groupby"
+                        string="Company"
+                        context="{'group_by': 'company_id'}"
+                        groups="base.group_multi_company"
+                    />
+                    <filter 
+                        name="sale_order_groupby" 
+                        string="Sale Order" 
+                        context="{'group_by': 'sale_order_id'}" 
+                    />
+                    <filter 
+                        name="purchase_order_groupby" 
+                        string="Purchase Order" 
+                        context="{'group_by': 'purchase_order_id'}" 
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>

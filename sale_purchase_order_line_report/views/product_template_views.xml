@@ -1,0 +1,25 @@
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.common.form (in sale_purchase_order_line)</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_open_documents']" position="before">
+                <field 
+                    name="sale_purchase_count" 
+                    groups="sale_purchase_order_line_report.group_sale_purchase_order_line_report"
+                    invisible="1"
+                />
+                <button 
+                    string="Sale/Purchase History"
+                    name="action_sale_purchase_order_line" 
+                    type="object" 
+                    class="oe_stat_button" 
+                    icon="fa-list"
+                    groups="sale_purchase_order_line_report.group_sale_purchase_order_line_report"
+                    invisible="sale_purchase_count == 0"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
