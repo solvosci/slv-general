@@ -6,7 +6,7 @@
         Create a view that combines purchase and sales order lines,
         accessible from both partner and product.
     """,
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "author": "Solvos",
     "category": "Sales/Purchases",
     "license": "LGPL-3",
