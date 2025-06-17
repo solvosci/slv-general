@@ -5,8 +5,12 @@
     "summary": """
         Create a view that combines purchase and sales order lines,
         accessible from both partner and product.
+        There are two modes of viewing the view:
+        - report on ordered quantities
+        - report on received/delivered quantities
+        configurable in the settings.
     """,
-    "version": "17.0.1.0.1",
+    "version": "17.0.2.0.0",
     "author": "Solvos",
     "category": "Sales/Purchases",
     "license": "LGPL-3",
@@ -20,5 +24,6 @@
         "views/sale_purchase_order_line_views.xml",
         "views/res_partner_views.xml",
         "views/product_template_views.xml",
+        "views/res_config_settings_views.xml",
     ]
 }
