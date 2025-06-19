@@ -35,13 +35,13 @@
                 <field name="purchase_order_id"/>
                 <field name="company_id" groups="!base.group_multi_company" invisible="True"/>
                 <field name="company_id" groups="base.group_multi_company"/>
-                <filter 
-                    name="sales" 
-                    string="Sales" 
+                <filter
+                    name="sales"
+                    string="Sales"
                     domain="[('type', '=', 'sale')]"/>
-                <filter 
-                    name="purchases" 
-                    string="Purchases" 
+                <filter
+                    name="purchases"
+                    string="Purchases"
                     domain="[('type', '=', 'purchase')]"/>
                 <group string="Group By" name="groupby">
                     <filter
@@ -78,15 +78,15 @@
                         context="{'group_by': 'company_id'}"
                         groups="base.group_multi_company"
                     />
-                    <filter 
-                        name="sale_order_groupby" 
-                        string="Sale Order" 
-                        context="{'group_by': 'sale_order_id'}" 
+                    <filter
+                        name="sale_order_groupby"
+                        string="Sale Order"
+                        context="{'group_by': 'sale_order_id'}"
                     />
-                    <filter 
-                        name="purchase_order_groupby" 
-                        string="Purchase Order" 
-                        context="{'group_by': 'purchase_order_id'}" 
+                    <filter
+                        name="purchase_order_groupby"
+                        string="Purchase Order"
+                        context="{'group_by': 'purchase_order_id'}"
                     />
                 </group>
             </search>

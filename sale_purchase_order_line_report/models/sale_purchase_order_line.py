@@ -7,7 +7,7 @@ from odoo import models, fields, tools, _
 class SalePurchaseOrderLine(models.Model):
     _name = 'sale.purchase.order.line'
     _description = 'Combined Sale and Purchase Order Lines'
-    _auto = False 
+    _auto = False
 
     date_order = fields.Datetime('Order Date', readonly=True)
     order_name = fields.Char('Order', readonly=True, index=True)
@@ -34,7 +34,7 @@ class SalePurchaseOrderLine(models.Model):
     def init(self):
         tools.drop_view_if_exists(self._cr, 'sale_purchase_order_line')
         self._cr.execute('''
-            CREATE VIEW %s AS 
+            CREATE VIEW %s AS
                 (
                     SELECT sol.id * 2 AS id, so.date_order, so.name AS order_name, so.id AS sale_order_id, NULL AS purchase_order_id,
                     sol.order_partner_id AS partner_id, sol.company_id, sol.product_id,
@@ -77,11 +77,11 @@ class SalePurchaseOrderLine(models.Model):
                     WHERE po.state IN ('purchase', 'done')
                 )
             ''' % self._table)
-    
+
     def action_sale_purchase_view(self):
         self.ensure_one()
         ret= {
-                "name": (_("Order")),
+                "name": _("Order"),
                 "type": "ir.actions.act_window",
                 "view_mode": "form",
                 "target": "current",

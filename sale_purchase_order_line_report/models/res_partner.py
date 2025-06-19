@@ -10,7 +10,7 @@ class ResPartner(models.Model):
 
     def _get_action_view_domain(self):
         return [('partner_id','=',self.id)]
-    
+
     def _get_action_view_context(self):
         ret = super()._get_action_view_context()
         ret.update({'hide_sale_purchase_partner': True})
