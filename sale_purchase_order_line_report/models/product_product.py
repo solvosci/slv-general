@@ -10,7 +10,7 @@ class ProductProduct(models.Model):
 
     def _get_action_view_domain(self):
         return [('product_id', '=', self.id)]
-    
+
     def _get_action_view_context(self):
         ret = super()._get_action_view_context()
         ret.update({'hide_sale_purchase_product': True})

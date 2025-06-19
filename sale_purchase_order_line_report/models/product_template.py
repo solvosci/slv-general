@@ -10,7 +10,7 @@ class ProductTemplate(models.Model):
 
     def _get_action_view_domain(self):
         return [('product_id', 'in', self.product_variant_ids.ids)]
-    
+
     def _get_action_view_context(self):
         ret = super()._get_action_view_context()
         ret.update({'hide_sale_purchase_product': True})
