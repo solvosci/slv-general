@@ -6,6 +6,7 @@ from odoo.exceptions import UserError
 
 import socket
 import time
+import requests
 
 import logging
 _logger = logging.getLogger(__name__)
@@ -14,10 +15,14 @@ _logger = logging.getLogger(__name__)
 class Scale(models.Model):
     _name = 'scale.scale'
     _description = "Scale"
+    _sql_constraints = [
+        ("name_uniq", "UNIQUE(name)", _("Name must be unique!")),
+    ]
 
     name = fields.Char(required=True)
-    ip = fields.Char(required=True)
-    port = fields.Integer(required=True)
+    ip = fields.Char()
+    port = fields.Integer()
+    url = fields.Char(string="URL")
 
     # TODO safe removal of these fields
     command_ask = fields.Char(readonly=True)
@@ -49,12 +54,16 @@ class Scale(models.Model):
         comodel_name="res.company", default=lambda self: self.env.company,
     )
 
+    get_weight_mode = fields.Selection(
+        selection=[("tcp", "TCP/IP"), ("webservice", "Webservice")], required=True, default='webservice'
+    )
+
     def get_last_weight(self):
         last_weight = self.get_weight()
         self.last_weight = last_weight['value']
         return self.last_weight
-
-    def get_weight(self):
+    
+    def get_weight_tcp(self):
         # TODO refactor exception handling (too returns)
 
         self.ensure_one()
@@ -145,6 +154,51 @@ class Scale(models.Model):
             )
         }
 
+    def get_weight_webservice(self):
+        self.ensure_one()
+        timeout = self.answer_time / 1000
+        error_http = None
+
+        for attempt in range(self.attempt_number):
+            if error_http and attempt > 0:
+                time.sleep(self.time_between_attempt / 1000)
+
+            try:
+                t_ini = fields.Datetime.now()
+                response = requests.get(self.url, timeout=timeout)
+                response.raise_for_status()
+                ts = fields.Datetime.now() - t_ini
+
+                data = response.json()
+                weight = data.get('Peso')
+
+                return {
+                    "value": weight,
+                    "err": False,
+                    "ok": _("Attempt #%d completed in %d ms") % (
+                        attempt + 1, int(ts.total_seconds() * 1000)
+                    )
+                }
+
+            except (requests.RequestException, UserError) as err:
+                _logger.error("Error attempt %d: %s", attempt + 1, str(err))
+                error_http = err
+                continue
+
+        # Si todos los intentos fallan
+        return {
+            "value": "----",
+            "err": _("%s after %d attempt(s)") % (
+                error_http, self.attempt_number
+            )
+        }
+
+    def get_weight(self):
+        if self.get_weight_mode == 'tcp':
+            return self.get_weight_tcp()
+        else:
+            return self.get_weight_webservice()
+
     def _get_weight_process(self, data):
         """
         Process the frame
@@ -233,3 +287,12 @@ class Scale(models.Model):
                 except Exception:
                     pass
         return ret
+
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default=None):
+        self.ensure_one()
+        if default is None:
+            default = {}
+        if 'name' not in default:
+            default['name'] = _("%s (copy)") % self.name
+        return super(Scale, self).copy(default=default)
