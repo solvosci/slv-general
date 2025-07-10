@@ -7,7 +7,7 @@
     'summary': 'Adds a basic scale management',
     'website': 'https://github.com/solvosci/slv-general',
     'license': 'LGPL-3',
-    'version': '13.0.2.0.0',
+    'version': '13.0.3.0.0',
     'depends': ['uom', 'mail'],
     'data': [
         'data/scale_data.xml',

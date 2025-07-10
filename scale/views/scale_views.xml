@@ -48,12 +48,14 @@
                             <field
                                 name="company_id"
                                 groups="base.group_multi_company"
-                            />                        
-                            <field name="ip"/>
-                            <field name="port"/>
-                            <field name="command_ask"/>
-                            <field name="answer_prefix"/>
-                            <field name="answer_suffix"/>
+                            />
+                            <field name="get_weight_mode" widget="radio"/>
+                            <field name="ip" attrs="{'invisible': [('get_weight_mode','=', 'webservice')], 'required': [('get_weight_mode','=', 'tcp')]}"/>
+                            <field name="port" attrs="{'invisible': [('get_weight_mode','=', 'webservice')], 'required': [('get_weight_mode','=', 'tcp')]}"/>
+                            <field name="url" attrs="{'invisible': [('get_weight_mode','=', 'tcp')], 'required': [('get_weight_mode','=', 'webservice')]}"/>
+                            <field name="command_ask" attrs="{'invisible': [('get_weight_mode','=', 'webservice')]}"/>
+                            <field name="answer_prefix" attrs="{'invisible': [('get_weight_mode','=', 'webservice')]}"/>
+                            <field name="answer_suffix" attrs="{'invisible': [('get_weight_mode','=', 'webservice')]}"/>
                         </group>
                         <group>
                             <field name="answer_time"/>
@@ -78,7 +80,9 @@
             <tree string="Scales" decoration-muted="not active">
                 <field name="name"/>
                 <field name="ip"/>
+                <field name="get_weight_mode"/>
                 <field name="port"/>
+                <field name="url"/>
                 <field name="command_ask" optional="hide"/>
                 <field name="answer_prefix" optional="hide"/>
                 <field name="answer_suffix" optional="hide"/>
@@ -90,7 +94,7 @@
                 <field
                     name="company_id"
                     groups="base.group_multi_company"
-                />                        
+                />
                 <field name="active" invisible="1"/>
             </tree>
         </field>
