@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-08 09:56+0000\n"
-"PO-Revision-Date: 2022-11-08 09:56+0000\n"
+"POT-Creation-Date: 2025-07-17 08:35+0000\n"
+"PO-Revision-Date: 2025-07-17 08:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,16 @@ msgstr ""
 
 #. module: scale
 #: code:addons/scale/models/scale_scale.py:0
+#: code:addons/slv-general/scale/models/scale_scale.py:0
+#, python-format
+msgid "%s (copy)"
+msgstr ""
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#: code:addons/scale/models/scale_scale.py:0
+#: code:addons/slv-general/scale/models/scale_scale.py:0
+#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid "%s after %d attempt(s)"
 msgstr ""
@@ -49,6 +59,9 @@ msgstr ""
 
 #. module: scale
 #: code:addons/scale/models/scale_scale.py:0
+#: code:addons/scale/models/scale_scale.py:0
+#: code:addons/slv-general/scale/models/scale_scale.py:0
+#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid "Attempt #%d completed in %d ms"
 msgstr ""
@@ -84,6 +97,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__get_weight_mode
+msgid "Get Weight Mode"
+msgstr ""
+
+#. module: scale
 #: model:ir.model.fields,field_description:scale.field_scale_scale__id
 msgid "ID"
 msgstr ""
@@ -114,6 +132,21 @@ msgid "Last Weight"
 msgstr ""
 
 #. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__last_weight_dt
+msgid "Last Weight Datetime"
+msgstr ""
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__last_weight_error
+msgid "Last Weight Error"
+msgstr ""
+
+#. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__last_weight_ok
+msgid "Last Weight Ok"
+msgstr ""
+
+#. module: scale
 #: model:res.groups,name:scale.group_scale_manager
 msgid "Manager"
 msgstr ""
@@ -121,6 +154,14 @@ msgstr ""
 #. module: scale
 #: model:ir.model.fields,field_description:scale.field_scale_scale__name
 msgid "Name"
+msgstr ""
+
+#. module: scale
+#: code:addons/scale/models/scale_scale.py:0
+#: code:addons/slv-general/scale/models/scale_scale.py:0
+#: model:ir.model.constraint,message:scale.constraint_scale_scale_name_uniq
+#, python-format
+msgid "Name must be unique!"
 msgstr ""
 
 #. module: scale
@@ -146,6 +187,13 @@ msgid "Scale Test"
 msgstr ""
 
 #. module: scale
+#: model:ir.actions.server,name:scale.ir_cron_scale_action_ir_actions_server
+#: model:ir.cron,cron_name:scale.ir_cron_scale_action
+#: model:ir.cron,name:scale.ir_cron_scale_action
+msgid "Scale: run scheduler"
+msgstr ""
+
+#. module: scale
 #: model:ir.actions.act_window,name:scale.scale_action
 #: model_terms:ir.ui.view,arch_db:scale.view_scale_scale_tree
 msgid "Scales"
@@ -153,11 +201,17 @@ msgstr ""
 
 #. module: scale
 #: code:addons/scale/models/scale_scale.py:0
+#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid ""
 "Success!! %s\n"
 "\n"
 "Weight read: %d"
+msgstr ""
+
+#. module: scale
+#: model:ir.model.fields.selection,name:scale.selection__scale_scale__get_weight_mode__tcp
+msgid "TCP/IP"
 msgstr ""
 
 #. module: scale
@@ -172,7 +226,13 @@ msgid "Time in ms"
 msgstr ""
 
 #. module: scale
+#: model:ir.model.fields,field_description:scale.field_scale_scale__url
+msgid "URL"
+msgstr ""
+
+#. module: scale
 #: code:addons/scale/models/scale_scale.py:0
+#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid ""
 "Unexpected frame format received (%s): %s. Expected: '%s+ 12345\r"
@@ -190,31 +250,27 @@ msgid "User"
 msgstr ""
 
 #. module: scale
+#: model:ir.model.fields.selection,name:scale.selection__scale_scale__get_weight_mode__webservice
+msgid "Webservice"
+msgstr ""
+
+#. module: scale
 #: code:addons/scale/models/scale_scale.py:0
+#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid "bad number format"
 msgstr ""
 
 #. module: scale
 #: code:addons/scale/models/scale_scale.py:0
-#, python-format
-msgid "missing end of frame \r"
-msgstr ""
-
-#. module: scale
-#: code:addons/scale/models/scale_scale.py:0
-#, python-format
-msgid "missing prefix"
-msgstr ""
-
-#. module: scale
-#: code:addons/scale/models/scale_scale.py:0
+#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid "missing sign (+/-)"
 msgstr ""
 
 #. module: scale
 #: code:addons/scale/models/scale_scale.py:0
+#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
-msgid "missing suffix"
+msgid "unexpected frame lenght"
 msgstr ""
