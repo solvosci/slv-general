@@ -6,4 +6,13 @@
         <field name="res_model">camera.camera</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+    <menuitem
+        id="camera_menu"
+        name="Camera"
+        action="camera_action"
+        parent="base.menu_ir_property"
+        groups="base.group_no_one"
+    />
+
 </odoo>
