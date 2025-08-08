@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 
 class ModelCodeMixin(models.AbstractModel):
     _name = "model.code.mixin"
+    _description = "Model Code Mixin"
 
     name = fields.Char(required=True)
     code = fields.Char(required=True, index=True)
