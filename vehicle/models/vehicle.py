@@ -26,6 +26,7 @@ class Vehicle(models.Model):
         required=True,
         tracking=True,
     )
+    has_group_vehicle_manager = fields.Boolean(compute="_compute_has_group_vehicle_manager")
 
     _sql_constraints = [(
         "license_plate",
@@ -38,11 +39,12 @@ class Vehicle(models.Model):
         for record in self:
             record.name = record.license_plate
 
-    # TODO Improve vehicle name detection
-    @api.constrains('license_plate')
-    def _constrains_name(self):
-        self.name = self.license_plate
-
     @api.returns('self', lambda value: value.id)
     def copy(self):
         raise exceptions.UserError(_('You cannot duplicate a vehicle.'))
+
+    @api.depends('license_plate')
+    def _compute_has_group_vehicle_manager(self):
+        group = "vehicle.group_vehicle_manager"
+        for record in self:
+            record.has_group_vehicle_manager = self.env.user.has_group(group) | False
