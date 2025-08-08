@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
     <record id="view_vehicle_vehicle_search" model="ir.ui.view">
@@ -35,11 +34,12 @@
         <field name="arch" type="xml">
             <form string="Vehicle">
                 <header>
+                    <field name="has_group_vehicle_manager" invisible="1"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                     </div>
-                    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active"/>
                     <div class="oe_title">
                         <h1 class="oe_title">
                             <field name="name" readonly="1"/>
@@ -50,7 +50,7 @@
                             <field name="license_plate"/>
                         </group>
                         <group>
-                            <field name="user_id"/>
+                            <field name="user_id" readonly="not has_group_vehicle_manager"/>
                             <field name="active" invisible="1" />
                         </group>
                     </group>
@@ -71,7 +71,7 @@
                 <field name="license_plate"/>
                 <field name="name"/>
                 <field name="user_id"/>
-                <field name="active" invisible="1"/>
+                <field name="active" column_invisible="1"/>
             </tree>
         </field>
     </record>
@@ -106,28 +106,4 @@
             </kanban>
         </field>
     </record>
-
-    <record id="view_vehicle_vehicle_form_user" model="ir.ui.view">
-        <field name="name">vehicle.vehicle.form (user_id user)</field>
-        <field name="model">vehicle.vehicle</field>
-        <field name="inherit_id" ref="vehicle.view_vehicle_vehicle_form" />
-        <field name="groups_id" eval="[(4, ref('vehicle.group_vehicle_user'))]" />
-        <field name="arch" type="xml">                
-            <field name="user_id" position="attributes">
-                <attribute name="readonly">1</attribute>                   
-            </field>                
-        </field>
-    </record>
-    <record id="view_vehicle_vehicle_form_manager" model="ir.ui.view">
-        <field name="name">vehicle.vehicle.form (user_id manager)</field>
-        <field name="model">vehicle.vehicle</field>
-        <field name="inherit_id" ref="vehicle.view_vehicle_vehicle_form" />
-        <field name="groups_id" eval="[(4, ref('vehicle.group_vehicle_manager'))]" />
-        <field name="priority" eval="25"/>
-        <field name="arch" type="xml">                
-            <field name="user_id" position="attributes">
-                <attribute name="readonly">0</attribute>                   
-            </field>                
-        </field>
-    </record>  
 </odoo>
