@@ -7,9 +7,9 @@
     """,
     "author": "Solvos",
     "license": "LGPL-3",
-    "version": "13.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Uncategorized",
-    "website": "https://github.com/solvosci/slv-sale",
+    "website": "https://github.com/solvosci/slv-general",
     "depends": [],
     "data": [
         "views/model_code_mixin_views.xml",
