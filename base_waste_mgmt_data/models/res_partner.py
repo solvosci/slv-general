@@ -6,6 +6,12 @@ from odoo import fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    nima_code = fields.Char(string="NIMA Code")
-    auth_number = fields.Char(string="Authorization Number")
+    nima_code = fields.Char(
+        string="NIMA Code",
+        copy=False
+        )
+    auth_number = fields.Char(
+        string="Authorization Number",
+        copy=False
+        )
     valuation_operation = fields.Char(default="R4")
