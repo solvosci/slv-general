@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 08:35+0000\n"
-"PO-Revision-Date: 2025-07-17 08:35+0000\n"
+"POT-Creation-Date: 2025-08-28 06:46+0000\n"
+"PO-Revision-Date: 2025-08-28 06:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,17 +16,16 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: scale
+#. odoo-python
 #: code:addons/scale/models/scale_scale.py:0
-#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid "%s (copy)"
 msgstr ""
 
 #. module: scale
+#. odoo-python
 #: code:addons/scale/models/scale_scale.py:0
 #: code:addons/scale/models/scale_scale.py:0
-#: code:addons/slv-general/scale/models/scale_scale.py:0
-#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid "%s after %d attempt(s)"
 msgstr ""
@@ -53,15 +52,22 @@ msgid "Answer Time"
 msgstr ""
 
 #. module: scale
+#. odoo-python
+#: code:addons/scale/models/scale_scale.py:0
+#, python-format
+msgid ""
+"Answer time must be more than 0 and time between attempts cannot be negative"
+msgstr ""
+
+#. module: scale
 #: model_terms:ir.ui.view,arch_db:scale.view_scale_scale_search
 msgid "Archived"
 msgstr ""
 
 #. module: scale
+#. odoo-python
 #: code:addons/scale/models/scale_scale.py:0
 #: code:addons/scale/models/scale_scale.py:0
-#: code:addons/slv-general/scale/models/scale_scale.py:0
-#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid "Attempt #%d completed in %d ms"
 msgstr ""
@@ -112,11 +118,6 @@ msgid "Ip"
 msgstr ""
 
 #. module: scale
-#: model:ir.model.fields,field_description:scale.field_scale_scale____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: scale
 #: model:ir.model.fields,field_description:scale.field_scale_scale__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -157,9 +158,8 @@ msgid "Name"
 msgstr ""
 
 #. module: scale
+#. odoo-python
 #: code:addons/scale/models/scale_scale.py:0
-#: code:addons/slv-general/scale/models/scale_scale.py:0
-#: model:ir.model.constraint,message:scale.constraint_scale_scale_name_uniq
 #, python-format
 msgid "Name must be unique!"
 msgstr ""
@@ -172,6 +172,7 @@ msgstr ""
 #. module: scale
 #: model:ir.model,name:scale.model_scale_scale
 #: model:ir.module.category,name:scale.module_scale_category
+#: model:ir.ui.menu,name:scale.scale_menu
 #: model_terms:ir.ui.view,arch_db:scale.view_scale_scale_form
 msgid "Scale"
 msgstr ""
@@ -188,8 +189,6 @@ msgstr ""
 
 #. module: scale
 #: model:ir.actions.server,name:scale.ir_cron_scale_action_ir_actions_server
-#: model:ir.cron,cron_name:scale.ir_cron_scale_action
-#: model:ir.cron,name:scale.ir_cron_scale_action
 msgid "Scale: run scheduler"
 msgstr ""
 
@@ -200,8 +199,8 @@ msgid "Scales"
 msgstr ""
 
 #. module: scale
+#. odoo-python
 #: code:addons/scale/models/scale_scale.py:0
-#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid ""
 "Success!! %s\n"
@@ -231,8 +230,8 @@ msgid "URL"
 msgstr ""
 
 #. module: scale
+#. odoo-python
 #: code:addons/scale/models/scale_scale.py:0
-#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid ""
 "Unexpected frame format received (%s): %s. Expected: '%s+ 12345\r"
@@ -255,22 +254,22 @@ msgid "Webservice"
 msgstr ""
 
 #. module: scale
+#. odoo-python
 #: code:addons/scale/models/scale_scale.py:0
-#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid "bad number format"
 msgstr ""
 
 #. module: scale
+#. odoo-python
 #: code:addons/scale/models/scale_scale.py:0
-#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid "missing sign (+/-)"
 msgstr ""
 
 #. module: scale
+#. odoo-python
 #: code:addons/scale/models/scale_scale.py:0
-#: code:addons/slv-general/scale/models/scale_scale.py:0
 #, python-format
 msgid "unexpected frame lenght"
 msgstr ""

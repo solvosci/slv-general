@@ -1,7 +1,7 @@
 # © 2021 Solvos Consultoría Informática (<http://www.solvos.es>)
 # License LGPL-3.0 (https://www.gnu.org/licenses/lgpl-3.0.html)
 
-from odoo import api, models, fields, registry, tools, _
+from odoo import api, models, fields, registry, tools, _, SUPERUSER_ID
 from odoo.exceptions import UserError
 
 import socket
@@ -39,7 +39,7 @@ class Scale(models.Model):
     uom_id = fields.Many2one(
         'uom.uom',
         required=True,
-        domain="[('measure_type','=','weight')]",
+        domain=lambda self: [('category_id', '=', self.env.ref('uom.product_uom_categ_kgm').id)]
     )
     last_weight = fields.Integer(readonly=True)
     last_weight_dt = fields.Datetime(
@@ -62,11 +62,17 @@ class Scale(models.Model):
         last_weight = self.get_weight()
         self.last_weight = last_weight['value']
         return self.last_weight
-    
+
+    @api.constrains('answer_time', 'time_between_attempt')
+    def get_time_parameters(self):
+        if self.answer_time <= 0 or self.time_between_attempt < 0:
+            raise UserError(_("Answer time must be more than 0 and time between attempts cannot be negative"))
+
     def get_weight_tcp(self):
         # TODO refactor exception handling (too returns)
 
         self.ensure_one()
+        self.get_time_parameters()
         socket.setdefaulttimeout(self.answer_time / 1000)
         server_address = (self.ip, self.port)
 
@@ -156,6 +162,7 @@ class Scale(models.Model):
 
     def get_weight_webservice(self):
         self.ensure_one()
+        self.get_time_parameters()
         timeout = self.answer_time / 1000
         error_http = None
 
@@ -226,34 +233,39 @@ class Scale(models.Model):
 
     @api.model
     def _run_scheduler_once(self, scale_id):
-        with api.Environment.manage():
-            # NOT SURE OF THIS
-            # As this function is in a new thread, I need to open a new cursor, because the old one may be closed
-            new_cr = self.pool.cursor()
-            self = self.with_env(self.env(cr=new_cr))
-            scheduler_cron = self.sudo().env.ref("scale.ir_cron_scale_action")
-            # Avoid to run the scheduler multiple times in the same time
-            try:
-                with tools.mute_logger('odoo.sql_db'):
-                    self._cr.execute("SELECT id FROM ir_cron WHERE id = %s FOR UPDATE NOWAIT", (scheduler_cron.id,))
-            except Exception:
-                _logger.info('Attempt to run scale scheduler aborted, as already running')
-                ret = {
-                    "last_weight": scale_id.last_weight,
-                    "last_weight_dt": scale_id.last_weight_dt,
-                    "last_weight_ok": scale_id.last_weight_ok,
-                    "last_weight_error": scale_id.last_weight_error,
-                }
-                self._cr.rollback()
-                self._cr.close()
-                return ret
+        self.env.cr.execute(
+            "SELECT pg_try_advisory_lock(%s)",
+            (scale_id.id,)
+        )
+        locked = self.env.cr.fetchone()[0]
 
-            ret = self.sudo().run_scheduler(
-                use_new_cursor=self._cr.dbname,
-                scale_id=scale_id.id,
+        if not locked:
+            _logger.info(
+                "Scale %s scheduler already running, skipping execution",
+                scale_id.id
             )
-            new_cr.close()
-            return ret
+            return {
+                "last_weight": scale_id.last_weight,
+                "last_weight_dt": scale_id.last_weight_dt,
+                "last_weight_ok": scale_id.last_weight_ok,
+                "last_weight_error": scale_id.last_weight_error,
+            }
+
+        try:
+            return self.sudo().run_scheduler(scale_id=scale_id.id)
+
+        except Exception:
+            _logger.exception(
+                "Unexpected error while running scheduler for scale %s",
+                scale_id.id
+            )
+            raise
+
+        finally:
+            self.env.cr.execute(
+                "SELECT pg_advisory_unlock(%s)",
+                (scale_id.id,)
+            )
 
     @api.model
     def run_scheduler(self, use_new_cursor=False, scale_id=False):
