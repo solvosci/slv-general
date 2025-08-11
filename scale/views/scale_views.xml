@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_scale_scale_search" model="ir.ui.view">
         <field name="name">scale.scale.search</field>
@@ -37,7 +36,7 @@
                     <field name="active" invisible="1"/>
                     <div class="oe_button_box" name="button_box">
                     </div>
-                    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active"/>
                     <div class="oe_title">
                         <h1 class="oe_title">
                             <field name="name" />
@@ -50,12 +49,12 @@
                                 groups="base.group_multi_company"
                             />
                             <field name="get_weight_mode" widget="radio"/>
-                            <field name="ip" attrs="{'invisible': [('get_weight_mode','=', 'webservice')], 'required': [('get_weight_mode','=', 'tcp')]}"/>
-                            <field name="port" attrs="{'invisible': [('get_weight_mode','=', 'webservice')], 'required': [('get_weight_mode','=', 'tcp')]}"/>
-                            <field name="url" attrs="{'invisible': [('get_weight_mode','=', 'tcp')], 'required': [('get_weight_mode','=', 'webservice')]}"/>
-                            <field name="command_ask" attrs="{'invisible': [('get_weight_mode','=', 'webservice')]}"/>
-                            <field name="answer_prefix" attrs="{'invisible': [('get_weight_mode','=', 'webservice')]}"/>
-                            <field name="answer_suffix" attrs="{'invisible': [('get_weight_mode','=', 'webservice')]}"/>
+                            <field name="ip" invisible="get_weight_mode == 'webservice'" required="get_weight_mode == 'tcp'"/>
+                            <field name="port" invisible="get_weight_mode == 'webservice'" required="get_weight_mode == 'tcp'"/>
+                            <field name="url" invisible="get_weight_mode == 'tcp'" required="get_weight_mode == 'webservice'"/>
+                            <field name="command_ask" invisible="get_weight_mode == 'webservice'"/>
+                            <field name="answer_prefix" invisible="get_weight_mode == 'webservice'"/>
+                            <field name="answer_suffix" invisible="get_weight_mode == 'webservice'"/>
                         </group>
                         <group>
                             <field name="answer_time"/>
@@ -95,7 +94,7 @@
                     name="company_id"
                     groups="base.group_multi_company"
                 />
-                <field name="active" invisible="1"/>
+                <field name="active" column_invisible="1"/>
             </tree>
         </field>
     </record>
