@@ -53,7 +53,13 @@ class SalePurchaseOrderLine(models.Model):
                     FROM sale_order_line sol
                     INNER JOIN sale_order so ON sol.order_id = so.id
                     INNER JOIN res_company com ON com.id = sol.company_id
-                    WHERE so.state = 'sale'
+                    WHERE (
+                        so.state = 'sale'
+                        OR (
+                            so.state IN ('draft', 'sent')
+                            AND sol.qty_delivered > 0
+                        )
+                    )
                 )
                 UNION
                 (
