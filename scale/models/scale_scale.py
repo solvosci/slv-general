@@ -158,6 +158,7 @@ class Scale(models.Model):
         self.ensure_one()
         timeout = self.answer_time / 1000
         error_http = None
+        headers = {"Cache-Control": "no-cache"}
 
         for attempt in range(self.attempt_number):
             if error_http and attempt > 0:
@@ -165,7 +166,7 @@ class Scale(models.Model):
 
             try:
                 t_ini = fields.Datetime.now()
-                response = requests.get(self.url, timeout=timeout)
+                response = requests.get(self.url, headers=headers, timeout=timeout)
                 response.raise_for_status()
                 ts = fields.Datetime.now() - t_ini
 
