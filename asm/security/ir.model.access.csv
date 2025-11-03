@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_asm_user,access.asm.asm.user,model_asm_asm,asm.group_asm_user,1,0,0,0
+access_asm_manager,access.asm.asm.manager,model_asm_asm,asm.group_asm_manager,1,1,1,1
