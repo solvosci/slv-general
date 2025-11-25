@@ -9,6 +9,7 @@
             </xpath>
             <xpath expr="//field[@name='adr_packing_instruction_ids']" position="before">
                 <field name="packaging_group_id"/>
+                <field name="package_description" />
             </xpath>
         </field>
     </record>
