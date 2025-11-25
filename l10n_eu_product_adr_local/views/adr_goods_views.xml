@@ -8,7 +8,8 @@
                 <field name="un_local_code" required="True"/>
             </xpath>
             <xpath expr="//field[@name='packing_instruction_ids']" position="before">
-                <field name="packaging_group_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="packaging_group_id"/>
+                <field name="package_description" />
             </xpath>
             <xpath expr="//field[@name='label_ids']/parent::group" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -21,9 +22,6 @@
                         options="{'no_create': True}"
                         mode="kanban"
                     />
-                </group>
-                <group string="Other Information">
-                    <field name="package_description" />
                 </group>
             </xpath>
         </field>

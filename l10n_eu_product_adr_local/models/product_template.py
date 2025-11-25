@@ -12,3 +12,6 @@ class ProductTemplate(models.Model):
         comodel_name='adr.goods.packaging.group',
         related='product_variant_ids.adr_goods_id.packaging_group_id'
     )
+    package_description = fields.Text(
+        related='product_variant_ids.adr_goods_id.package_description'
+    )

@@ -12,3 +12,6 @@ class ProductProduct(models.Model):
         comodel_name='adr.goods.packaging.group',
         related='adr_goods_id.packaging_group_id'
     )
+    package_description = fields.Text(
+        related='adr_goods_id.package_description'
+    )

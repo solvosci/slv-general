@@ -8,7 +8,7 @@ import re
 class AdrGoods(models.Model):
     _inherit = 'adr.goods'
 
-    un_local_code = fields.Char(string="UN Code")
+    un_local_code = fields.Char(string="UN Code", copy=False)
     packaging_group_id = fields.Many2one(
         comodel_name='adr.goods.packaging.group',
     )
