@@ -7,10 +7,11 @@ from odoo.exceptions import UserError
 import socket
 import time
 import requests
+from datetime import datetime
+import pytz
 
 import logging
 _logger = logging.getLogger(__name__)
-
 
 class Scale(models.Model):
     _name = 'scale.scale'
@@ -18,6 +19,8 @@ class Scale(models.Model):
     _sql_constraints = [
         ("name_uniq", "UNIQUE(name)", _("Name must be unique!")),
     ]
+
+    admitted_time_offset = fields.Integer(default=1000*60)
 
     name = fields.Char(required=True)
     ip = fields.Char()
@@ -48,6 +51,8 @@ class Scale(models.Model):
     )
     last_weight_ok = fields.Char(readonly=True)
     last_weight_error = fields.Char(readonly=True)
+    last_scale_json = fields.Char(readonly=True)
+
     active = fields.Boolean(default=True)
 
     company_id = fields.Many2one(
@@ -57,6 +62,11 @@ class Scale(models.Model):
     get_weight_mode = fields.Selection(
         selection=[("tcp", "TCP/IP"), ("webservice", "Webservice")], required=True, default='webservice'
     )
+
+    scale_tz = fields.Selection([(tz, tz) for tz in sorted(pytz.all_timezones, key=lambda tz: tz if not tz.startswith('Etc/') else '_')], string='Timezone', default=lambda self: self._context.get('tz'),
+        help="When printing documents and exporting/importing data, time values are computed according to this timezone.\n"
+            "If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
+            "Anywhere else, time values are computed according to the time offset of your web client.")
 
     def get_last_weight(self):
         last_weight = self.get_weight()
@@ -169,13 +179,25 @@ class Scale(models.Model):
                 response = requests.get(self.url, headers=headers, timeout=timeout)
                 response.raise_for_status()
                 ts = fields.Datetime.now() - t_ini
-
+                error_weight = False
                 data = response.json()
                 weight = data.get('Peso')
 
+                if self.admitted_time_offset != 0:
+                    date_string = data.get('TimeStamp')
+                    date_obj = datetime.strptime(date_string, "%Y/%m/%d %H:%M:%S")
+                    tz_name = self.scale_tz or 'UTC'
+                    tz = pytz.timezone(tz_name)
+                    date_obj_loc = tz.localize(date_obj)
+                    t_ini_tz = t_ini.astimezone(tz)
+                    time_f = abs((date_obj_loc - t_ini_tz).total_seconds())
+                    if time_f > (self.admitted_time_offset/100):
+                        error_weight = _('The scale delivery is time out of date for %d seconds') % (time_f)
+
                 return {
                     "value": weight,
-                    "err": False,
+                    "last_scale_json": data,
+                    "err": error_weight,
                     "ok": _("Attempt #%d completed in %d ms") % (
                         attempt + 1, int(ts.total_seconds() * 1000)
                     )
@@ -244,6 +266,7 @@ class Scale(models.Model):
                     "last_weight_dt": scale_id.last_weight_dt,
                     "last_weight_ok": scale_id.last_weight_ok,
                     "last_weight_error": scale_id.last_weight_error,
+                    "last_scale_json": scale_id.last_scale_json,
                 }
                 self._cr.rollback()
                 self._cr.close()
@@ -272,6 +295,7 @@ class Scale(models.Model):
                         "last_weight_dt": fields.Datetime.now(),
                         "last_weight_ok": ret["ok"],
                         "last_weight_error": False,
+                        "last_scale_json": ret["last_scale_json"],
                     }
                 else:
                     ret = {

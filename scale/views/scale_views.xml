@@ -61,6 +61,8 @@
                             <field name="answer_time"/>
                             <field name="attempt_number"/>
                             <field name="time_between_attempt"/>
+                            <field name="admitted_time_offset" />
+                            <field name="scale_tz" />
                             <field name="uom_id"/>
                             <field name="last_weight"/>
                             <field name="last_weight_dt"/>
