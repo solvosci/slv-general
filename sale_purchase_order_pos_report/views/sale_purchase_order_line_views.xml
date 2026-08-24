@@ -1,0 +1,21 @@
+<odoo>
+
+    <record id="sale_purchase_order_line_view_tree" model="ir.ui.view">
+        <field name="name">sale.purchase.order.line.tree (in sale_purchase_order_line_report)</field>
+        <field name="model">sale.purchase.order.line</field>
+        <field name="inherit_id" ref="sale_purchase_order_line_report.sale_purchase_order_line_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="product_uom_qty" position="attributes">
+                <attribute name="column_invisible">True</attribute>
+            </field>
+            <field name="price_subtotal" position="attributes">
+                <attribute name="column_invisible">True</attribute>
+            </field>
+            <field name="product_uom_qty" position="after">
+                <field name="net_product_uom_qty"/>
+                <field name="net_price_subtotal"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
