@@ -1,0 +1,60 @@
+<odoo>
+    <record id="adr_goods_view_form" model="ir.ui.view">
+        <field name="name">adr.goods (in l10n_eu_product_adr_local) </field>
+        <field name="model">adr.goods</field>
+        <field name="inherit_id" ref="l10n_eu_product_adr.adr_goods_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='un_number']" position="before">
+                <field name="un_local_code" required="True"/>
+            </xpath>
+            <xpath expr="//field[@name='packing_instruction_ids']" position="before">
+                <field name="packaging_group_id"/>
+                <field name="package_description" />
+            </xpath>
+            <xpath expr="//field[@name='label_ids']/parent::group" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='label_ids']/parent::group" position="after">
+                <group string="Labels">
+                    <field
+                        name="label_ids"
+                        nolabel="1"
+                        options="{'no_create': True}"
+                        mode="kanban"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="adr_goods_view_tree" model="ir.ui.view">
+        <field name="name">adr.goods (in l10n_eu_product_adr_local) </field>
+        <field name="model">adr.goods</field>
+        <field name="inherit_id" ref="l10n_eu_product_adr.adr_goods_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </field>
+            <field name="name" position="after">
+                <field name="clean_name" />
+            </field>
+            <field name="un_number" position="before">
+                <field name="un_local_code"/>
+            </field>
+            <field name="transport_category" position="before">
+                <field name="packaging_group_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="adr_goods_view_search" model="ir.ui.view">
+        <field name="name">adr.goods.search (in l10n_eu_product_adr_local)</field>
+        <field name="model">adr.goods</field>
+        <field name="inherit_id" ref="l10n_eu_product_adr.adr_goods_view_search"/>
+        <field name="arch" type="xml">
+            <field name="un_number" position="before">
+                <field name="un_local_code"/>
+            </field>
+        </field>
+    </record>
+</odoo>

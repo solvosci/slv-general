@@ -1,0 +1,75 @@
+<odoo>
+    <record id="adr_goods_packaging_group_view_tree" model="ir.ui.view">
+        <field name="model">adr.goods.packaging.group</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="maximum_capacity"/>
+                <field name="multiplier"/>
+            </tree>
+        </field>
+    </record>
+    <record id="adr_goods_packaging_group_view_search" model="ir.ui.view">
+        <field name="model">adr.goods.packaging.group</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="description"/>
+            </search>
+        </field>
+    </record>
+    <record id="adr_goods_packaging_group_view_form" model="ir.ui.view">
+        <field name="model">adr.goods.packaging.group</field>
+        <field name="arch" type="xml">
+            <form string="Dangerous Goods Packaging Group">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                    <group>
+                        <field name="maximum_capacity"/>
+                        <field name="multiplier"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="adr_goods_packaging_group_view_kanban" model="ir.ui.view">
+        <field name="model">adr.goods.packaging.group</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="description"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="name"/></strong>
+                            <div><field name="description"/></div>
+                            <div>Max Capacity: <field name="maximum_capacity"/></div>
+                            <div>Multiplier: <field name="multiplier"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="adr_good_packaging_group_action" model="ir.actions.act_window">
+        <field name="name">Dangerous Goods Packaging Group</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">adr.goods.packaging.group</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        id="adr_good_packaging_group"
+        name="Dangerous Goods Packaging Group"
+        parent="l10n_eu_product_adr.adr_main_menu"
+        action="adr_good_packaging_group_action"
+        sequence="20"
+        groups="base.group_no_one"
+    />
+</odoo>

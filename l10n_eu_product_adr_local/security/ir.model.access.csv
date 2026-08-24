@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_adr_goods_packaging_group_user,access_adr_goods_packaging_group,model_adr_goods_packaging_group,l10n_eu_product_adr.group_adr_goods_user,1,0,0,0
+access_adr_goods_packaging_group_manager,access_adr_goods_packaging_group,model_adr_goods_packaging_group,l10n_eu_product_adr.group_adr_goods_admin,1,1,1,1
