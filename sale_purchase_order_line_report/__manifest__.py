@@ -10,7 +10,7 @@
         - report on received/delivered quantities
         configurable in the settings.
     """,
-    "version": "17.0.2.0.1",
+    "version": "17.0.2.1.0",
     "author": "Solvos",
     "category": "Sales/Purchases",
     "license": "LGPL-3",

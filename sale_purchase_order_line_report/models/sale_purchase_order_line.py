@@ -32,9 +32,9 @@ class SalePurchaseOrderLine(models.Model):
     qty_received = fields.Float('Received Qty', readonly=True)
 
     def init(self):
-        tools.drop_view_if_exists(self._cr, 'sale_purchase_order_line')
-        self._cr.execute('''
-            CREATE VIEW %s AS
+        tools.drop_view_if_exists(self._cr, "sale_purchase_order_line")
+        self._cr.execute(f"""
+            CREATE VIEW {self._table} AS
                 (
                     SELECT sol.id * 2 AS id, so.date_order, so.name AS order_name, so.id AS sale_order_id, NULL AS purchase_order_id,
                     sol.order_partner_id AS partner_id, sol.company_id, sol.product_id,
@@ -50,9 +50,11 @@ class SalePurchaseOrderLine(models.Model):
                         WHEN 'qty_rec_and_del' THEN sol.price_subtotal * sol.qty_delivered / NULLIF(sol.product_uom_qty, 0)
                     END AS price_subtotal,
                     so.currency_id, 'sale' AS type, sol.qty_delivered, 0 as qty_received
+                    {self._select_extra_sale()}
                     FROM sale_order_line sol
                     INNER JOIN sale_order so ON sol.order_id = so.id
                     INNER JOIN res_company com ON com.id = sol.company_id
+                    {self._from_extra_sale()}
                     WHERE (
                         so.state = 'sale'
                         OR (
@@ -60,6 +62,8 @@ class SalePurchaseOrderLine(models.Model):
                             AND sol.qty_delivered > 0
                         )
                     )
+                    {self._where_extra_sale()}
+                    GROUP BY sol.id, so.id, com.id
                 )
                 UNION
                 (
@@ -77,12 +81,24 @@ class SalePurchaseOrderLine(models.Model):
                         WHEN 'qty_rec_and_del' THEN pol.price_subtotal * pol.qty_received / NULLIF(pol.product_uom_qty, 0)
                     END AS price_subtotal,
                     po.currency_id, 'purchase' AS type, 0 as qty_delivered, pol.qty_received
+                    {self._select_extra_purchase()}
                     FROM purchase_order_line pol
                     INNER JOIN purchase_order po ON pol.order_id = po.id
                     INNER JOIN res_company com ON com.id = pol.company_id
+                    {self._from_extra_purchase()}
                     WHERE po.state IN ('purchase', 'done')
+                    {self._where_extra_purchase()}
+                    GROUP BY pol.id, po.id, com.id
                 )
-            ''' % self._table)
+            """)
+
+    def _select_extra_sale(self): return ""
+    def _from_extra_sale(self): return ""
+    def _where_extra_sale(self): return ""
+
+    def _select_extra_purchase(self): return ""
+    def _from_extra_purchase(self): return ""
+    def _where_extra_purchase(self): return ""
 
     def action_sale_purchase_view(self):
         self.ensure_one()
