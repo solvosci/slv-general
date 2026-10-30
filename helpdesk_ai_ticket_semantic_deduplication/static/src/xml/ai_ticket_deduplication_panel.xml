@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="helpdesk_ai_ticket_semantic_deduplication.AITicketDeduplicationPanel">
+        <div class="o_ai_deduplication_sidebar" t-att-aria-busy="state.isLoading or state.isSyncing ? 'true' : 'false'">
+            <h3>Similar tickets</h3>
+            <p class="o_ai_deduplication_description">Find up to 10 related tickets using this description. Review existing requests before creating a duplicate.</p>
+            <div class="o_ai_deduplication_actions">
+                <AITicketDeduplicationButtonLoader isLoading="state.isLoading" onClick.bind="onClick"/>
+                <AITicketSyncButtonLoader t-if="canSync" isLoading="state.isSyncing" onClick.bind="onSyncClick"/>
+            </div>
+            <p t-if="state.error" class="text-danger small mt-2" role="alert" t-esc="state.error"/>
+            <p t-if="state.syncError" class="text-danger small mt-2" role="alert" t-esc="state.syncError"/>
+            <div class="o_ai_ticket_list" t-if="state.tickets.length" tabindex="0" role="region" aria-label="Similar tickets">
+                <t t-foreach="state.tickets" t-as="ticket" t-key="ticket.id">
+                    <AITicketDeduplicationItem ticket="ticket"/>
+                </t>
+            </div>
+            <p t-if="state.hasSearched and !state.isLoading and !state.error and !state.tickets.length"
+               class="text-muted small mt-2" role="status">No similar tickets found.</p>
+        </div>
+    </t>
+</templates>
