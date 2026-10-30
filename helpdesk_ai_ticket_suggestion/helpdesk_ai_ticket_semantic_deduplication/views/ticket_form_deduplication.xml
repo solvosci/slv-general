@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_helpdesk_ticket_form_ai_deduplication" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form.ai.deduplication</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[hasclass('oe_title')]" position="after">
+                <div class="row" name="ai_deduplication_layout">
+                    <div class="col-12 col-lg-8" name="ai_deduplication_main"/>
+                    <div class="col-12 col-lg-4" name="ai_deduplication_aside">
+                        <widget name="ai_ticket_deduplication_panel"/>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//div[@name='ai_deduplication_main']" position="inside">
+                <xpath expr="//sheet/group[@name='main']" position="move"/>
+                <xpath expr="//field[@name='properties']/.." position="move"/>
+                <xpath expr="//sheet/notebook" position="move"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="helpdesk_ai_ticket_semantic_deduplication.AITicketDeduplicationItem">
+        <div class="o_ait_ticket_deduplication_item">
+            <div class="o_ait_ticket_deduplication_item__header">
+                <span class="o_ait_ticket_deduplication_item__number" t-att-title="props.ticket.number || '#' + props.ticket.id">
+                    <i class="fa fa-ticket me-1" aria-hidden="true"/>
+                    <t t-esc="props.ticket.number || '#' + props.ticket.id"/>
+                </span>
+                <SimilarityScoreBadge score="props.ticket.similarity"/>
+            </div>
+            <span class="o_ait_ticket_deduplication_item__title" t-att-title="props.ticket.name" t-esc="props.ticket.name"/>
+
+            <div t-if="props.ticket.description"
+                 class="o_ait_ticket_deduplication_item__description"
+                 t-esc="props.ticket.description"/>
+
+            <div class="o_ait_ticket_deduplication_item__footer">
+                <span t-if="props.ticket.stage" class="o_ait_ticket_deduplication_item__stage" t-att-title="props.ticket.stage">
+                    <i class="fa fa-circle" aria-hidden="true"/>
+                    <t t-esc="props.ticket.stage"/>
+                </span>
+                <button type="button" class="btn btn-primary btn-sm" t-on-click="openTicket">
+                    Open Ticket
+                </button>
+            </div>
+        </div>
+    </t>
+</templates>

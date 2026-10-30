@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="helpdesk_ai_ticket_semantic_deduplication.AITicketDeduplicationButtonLoader">
+            <button type="button" class="btn btn-outline-primary btn-sm"
+                t-att-disabled="props.isLoading"
+                t-on-click="() => props.onClick()">
+            <i t-if="props.isLoading" class="fa fa-spinner fa-spin me-1" aria-hidden="true"/>
+            <i t-else="" class="fa fa-search me-1" aria-hidden="true"/>
+            <t t-if="props.isLoading">Searching…</t>
+            <t t-else="">Find similar tickets</t>
+        </button>
+</t>
+</templates>

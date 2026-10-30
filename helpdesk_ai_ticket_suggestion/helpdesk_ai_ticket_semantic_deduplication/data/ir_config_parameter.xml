@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="config_parameter_semantic_context_api_url" model="ir.config_parameter">
+        <field name="key">helpdesk_ai_ticket_semantic_deduplication.semantic_context_api_url</field>
+        <field name="value">http://ai-api:8000/tickets/semantic-context</field>
+    </record>
+    <record id="helpdesk_ai_ticket_semantic_deduplication.db_loader_api_url" model="ir.config_parameter">
+        <field name="key">helpdesk_ai_ticket_semantic_deduplication.db_loader_api_url</field>
+        <field name="value">http://ai-api:8000/tickets/load</field>
+    </record>
+</odoo>
